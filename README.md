@@ -3,6 +3,7 @@
 # pip --version 
 # python -m pip install Django
 # pip install django
+# pip install mysqlclient
 # pip freeze
 
 asgiref==3.6.0
