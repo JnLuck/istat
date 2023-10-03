@@ -1,0 +1,7 @@
+<p>aqui mi template cargando</p>
+{% for certify in all_certify %}
+    <p> {{ certify.estudiante }}</p>
+    <p> {{ certify.registro_inst }}</p>
+    <p> {{ certify.id }}</p>
+    <a href="{% url 'certificados:single_cm' certify.id %}">Ver detalle</a>
+{% endfor %}
