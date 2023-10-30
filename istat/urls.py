@@ -19,9 +19,11 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-app_name = "certificados"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("certificados/", include("certificados.urls", namespace="certificados")),
+    path('app-gestion/', include('gestion.urls')),
+    path('app-unidades/', include('unidades.urls')),
+    path('app-estudiantes/', include('estudiantes.urls')),
+    path('app-certificados/', include('certificados.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -9,7 +9,7 @@ class Institucion(models.Model):
     lugar = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre}"
     
 class Carrera(models.Model):
 
@@ -17,7 +17,7 @@ class Carrera(models.Model):
     nombre = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre}"
 
 class Plan(models.Model):
 
@@ -25,7 +25,7 @@ class Plan(models.Model):
     nombre = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre}"
 
 class Persona(models.Model):
 

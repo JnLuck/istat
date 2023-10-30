@@ -1,9 +1,15 @@
-from django.urls import path
-from .views import CertificadoModularList, CertificadoModularDetail
+from django.urls import path, include
+from . import views
+from rest_framework import routers
 
-app_name = "certificados"
+router = routers.DefaultRouter()
+
+router.register(r'certificado-modular', views.CertificadoModularViewSet)
+router.register(r'tipo-educacion', views.TipoEducacionViewSet)
+router.register(r'certificado-educacion', views.CertificadoEducacionViewSet)
+router.register(r'tipo-auxiliar', views.TipoAuxiliarViewSet)
+router.register(r'certificado-auxiliar', views.CertificadoAuxiliarViewSet)
 
 urlpatterns = [
-    path("listcm/", CertificadoModularList.as_view(), name = "list_cm"),
-    path("detailcm/<pk>/", CertificadoModularDetail.as_view(), name = "single_cm"),
+    path('', include(router.urls))
 ]

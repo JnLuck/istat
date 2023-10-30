@@ -1,17 +1,17 @@
 from django.db import models
 
-from estudiantes.models import Estudiante
+from estudiantes.models import DetalleMatricula
 
 # Create your models here.
 class CertificadoModular(models.Model):
 
-    estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
+    detalle_matricula = models.ForeignKey(DetalleMatricula, on_delete=models.CASCADE)
     registro_inst = models.CharField(max_length=15, blank=True)
     fecha = models.DateField()
     firma = models.ImageField(blank=True)
 
     def __str__(self):
-        return f"{self.estudiante.persona.nombre}"
+        return f"{self.detalle_matricula.matricula.plan_estudiante.estudiante.persona.nombre} {self.registro_inst}"
 
 class TipoEducacion(models.Model):
 
@@ -22,7 +22,7 @@ class TipoEducacion(models.Model):
 
 class CertificadoEducacion(models.Model):
 
-    estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
+    detalle_matricula = models.ForeignKey(DetalleMatricula, on_delete=models.CASCADE)
     tipo = models.ForeignKey(TipoEducacion, on_delete=models.CASCADE)
     registro_inst = models.CharField(max_length=15, blank=True)
     registro_minedu = models.CharField(max_length=15, blank=True)
@@ -30,7 +30,7 @@ class CertificadoEducacion(models.Model):
     firma = models.ImageField(blank=True)
 
     def __str__(self):
-        return f"{self.estudiante.persona.nombre}"
+        return f"{self.detalle_matricula.matricula.plan_estudiante.estudiante.persona.nombre} {self.registro_inst}"
     
 class TipoAuxiliar(models.Model):
 
@@ -41,11 +41,11 @@ class TipoAuxiliar(models.Model):
 
 class CertificadoAuxiliar(models.Model):
 
-    estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
+    detalle_matricula = models.ForeignKey(DetalleMatricula, on_delete=models.CASCADE)
     tipo = models.ForeignKey(TipoAuxiliar, on_delete=models.CASCADE)
     registro_inst = models.CharField(max_length=15, blank=True)
     fecha = models.DateField()
     firma = models.ImageField(blank=True)
 
     def __str__(self):
-        return f"{self.estudiante.persona.nombre}"
+        return f"{self.detalle_matricula.matricula.plan_estudiante.estudiante.persona.nombre} {self.registro_inst}"

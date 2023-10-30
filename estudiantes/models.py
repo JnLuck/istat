@@ -21,7 +21,7 @@ class PlanEstudiante(models.Model):
     estado = models.BooleanField()
 
     def __str__(self):
-        return f"{self.estudiante.persona.nombre}"
+        return f"{self.plan.nombre} {self.estudiante.persona.nombre}"
 
 class Matricula(models.Model):
 
@@ -29,15 +29,15 @@ class Matricula(models.Model):
     ciclo = models.IntegerField()
 
     def __str__(self):
-        return f"{self.plan_estudiante.estudiante.persona.nombre}"
+        return f"{self.plan_estudiante.estudiante.persona.nombre} {self.plan_estudiante.estudiante.persona.apellido_paterno} {self.plan_estudiante.estudiante.persona.apellido_materno}"
 
 class DetalleMatricula(models.Model):
 
-    unidad = models.ForeignKey(UnidadDidactica, on_delete=models.CASCADE)
+    unidad_didactica = models.ForeignKey(UnidadDidactica, on_delete=models.CASCADE)
     matricula = models.ForeignKey(Matricula, on_delete=models.CASCADE)
-    nota = models.DecimalField(max_digits=2, decimal_places=2, blank=True)
+    nota = models.IntegerField()
     estado_curso = models.BooleanField(blank=True)
     estado_modulo = models.BooleanField(blank=True)
 
     def __str__(self):
-        return f"{self.unidad.nombre}"
+        return f"{self.unidad_didactica.nombre} {self.matricula.plan_estudiante.plan.nombre}"

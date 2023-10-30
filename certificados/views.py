@@ -1,15 +1,33 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from rest_framework import viewsets
 from .models import CertificadoModular
+from .models import TipoEducacion
+from .models import CertificadoEducacion
+from .models import TipoAuxiliar
+from .models import CertificadoAuxiliar
+from .serializers import CertificadoModularSerializer
+from .serializers import TipoEducacionSerializer
+from .serializers import CertificadoEducacionSerializer
+from .serializers import TipoAuxiliarSerializer
+from .serializers import CertificadoAuxiliarSerializer
 # Create your views here.
 
-class CertificadoModularList(ListView):
-    model = CertificadoModular
-    template_name = "certificados/list_cm.html"
-    context_object_name = "all_certify"
+class CertificadoModularViewSet(viewsets.ModelViewSet):
+    queryset = CertificadoModular.objects.all()
+    serializer_class = CertificadoModularSerializer
 
+class TipoEducacionViewSet(viewsets.ModelViewSet):
+    queryset = TipoEducacion.objects.all()
+    serializer_class = TipoEducacionSerializer
 
-class CertificadoModularDetail(DetailView):
-    model = CertificadoModular
-    template_name = "certificados/certificado_modular.html"
-    context_object_name = "single_certify"
+class CertificadoEducacionViewSet(viewsets.ModelViewSet):
+    queryset = CertificadoEducacion.objects.all()
+    serializer_class = CertificadoEducacionSerializer
+
+class TipoAuxiliarViewSet(viewsets.ModelViewSet):
+    queryset = TipoAuxiliar.objects.all()
+    serializer_class = TipoAuxiliarSerializer
+
+class CertificadoAuxiliarViewSet(viewsets.ModelViewSet):
+    queryset = CertificadoAuxiliar.objects.all()
+    serializer_class = CertificadoAuxiliarSerializer
